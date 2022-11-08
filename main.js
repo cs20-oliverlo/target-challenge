@@ -3,8 +3,8 @@ let ctx = cnv.getContext("2d");
 cnv.width = 800;
 cnv.height = 600;
 
-requestAnimationFrame(draw);
-function draw() {
+requestAnimationFrame(animate);
+function animate() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, cnv.width, cnv.height);
 
@@ -13,9 +13,8 @@ function draw() {
     let r = +document.getElementById("r-value").value;
     let numRings = +document.getElementById("number-rings").value;
     let gaga = numRings;
-    let newR = r / gaga;
+    let newR = r / numRings;
 
-    if (numRings > 0) {
         ctx.lineWidth = 3;
         ctx.strokeStyle = "red";
         ctx.beginPath();
@@ -27,12 +26,10 @@ function draw() {
             ctx.lineWidth = 3;
             ctx.strokeStyle = "red";
             ctx.beginPath();
-            ctx.arc(x, y, newR, 0, 2 * Math.PI);
+            ctx.arc(x, y, r - i * newR, 0, 2 * Math.PI);
             // ctx.arc(x, y, r, startAngle, endAngle);
             ctx.stroke();
-            gaga--;
         }
-    }
 
-    requestAnimationFrame(draw);
+    requestAnimationFrame(animate);
 }
